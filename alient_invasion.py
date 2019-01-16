@@ -1,6 +1,7 @@
 #-*-encoding:utf-8-*-
 import pygame
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 #from alien import Alien
 import game_function as gf
@@ -14,6 +15,8 @@ def run_game():
         (ai_setting.screen_width,ai_setting.screen_height)
     )
     pygame.display.set_caption("Alien Invasion")
+
+    stats = GameStats(ai_setting)
    # aliens = Alien(ai_setting, screen)
     ship = Ship(ai_setting, screen)
 
@@ -27,6 +30,6 @@ def run_game():
         ship.update()
         bullets.update()
         gf.update_bullets(ai_setting,screen, ship, aliens, bullets)
-        gf.update_aliens(ai_setting, aliens)
+        gf.update_aliens(ai_setting, stats,screen, ship, aliens, bullets)
         gf.update_screen(ai_setting, screen, ship, aliens, bullets)
 run_game()
